@@ -1,0 +1,578 @@
+{
+	"info": {
+		"_postman_id": "fa37cd5b-92eb-40c7-9e35-8ca4ccffc5bf",
+		"name": "test-5-File storage API",
+		"description": "# 🗃️ Get started here\n\nThis collection demonstrates a REST API for a file storage service. It supports creating, viewing, updating, and deleting files, with additional endpoints for large file upload and download.\n\n## 🔖 How to use this collection?\n\nThis collection is a blueprint template, demonstrating core features of a file storage API and how you might structure the endpoints involved. You can use this template as inspiration to build your own custom file storage API, or extend it to work with one you've already started working on.\n\n#### Step 1: Send the requests\n\nSend the requests and view the response returned by the mock API, or check out the examples included.\n\n#### **Step 2: Update the base URL**\n\nSelect the collection and navigate to the Variables tab. Update the `base_url` variable with your API's URL.\n\n#### **Step 3: Customize the requests**\n\nUpdate the different requests to suit your use case, including the request body, authorization, documentation, headers, tests, and path parameters.\n\n#### **Step 4: Continue building the collection**\n\nCreate requests in this collection to test the new API endpoints you develop.\n\n## ℹ️ Resources\n\n[Building requests](https://learning.postman.com/docs/sending-requests/requests/)  \n[Authorizing requests](https://learning.postman.com/docs/sending-requests/authorization/)  \n[Using variables](https://learning.postman.com/docs/sending-requests/variables/)  \n[Creating your first collection](https://learning.postman.com/docs/getting-started/creating-the-first-collection/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "File/folder management",
+			"item": [
+				{
+					"name": "Create item",
+					"id": "d6526913-b55c-4d8c-a255-147438c81c7f",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"containerId\": \"<string>\",\n    \"type\": \"file|folder\",\n    \"name\": \"<string>\",\n    \"permissions\": {\n        \"public\": \"none|read|write\",\n        \"members\": \"none|read|write\",\n        \"custom\": [{\n            \"<id>\": \"read|write\"\n        }]\n    },\n    \"data\": \"<binary>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/create",
+						"description": "Create a new file or folder.\n\nThe `containerId` property controls what folder the new item is created in.\n\nPermissions can be optionally set. The `permissions` property and sub-properties are optional, falling back to defaults if not set. The `custom` permissions entry allows granting read or write access to individual users by ID.\n\nFor small files, the `data` property can be used to upload them during this Create operation. For larger files, you can omit the `data` property and use the \"Update item data\" operation to upload the file afterwards."
+					},
+					"response": [
+						{
+							"id": "fadc1a9a-4481-4404-9e4d-8337f4e0637b",
+							"name": "Create file",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"containerId\": \"def-456\",\n    \"type\": \"file\",\n    \"name\": \"Meeting Agenda.docx\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    },\n    \"data\": \"<binary>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/create"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": \"abc-123\",\n    \"containerId\": \"def-456\",\n    \"type\": \"file\",\n    \"name\": \"Meeting Agenda.docx\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    },\n    \"data\": \"<binary>\"\n}"
+						},
+						{
+							"id": "bdddc671-c67d-48cf-9328-ef5c7437fff4",
+							"name": "Create folder",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"containerId\": \"hij-789\",\n    \"type\": \"folder\",\n    \"name\": \"Agenda documents\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/create"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": \"xyz-987\",\n    \"containerId\": \"hij-789\",\n    \"type\": \"folder\",\n    \"name\": \"Agenda documents\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get item info",
+					"id": "92192e7b-66ec-4894-8d0d-ced3e9df4c34",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/info/:itemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"info",
+								":itemId"
+							],
+							"variable": [
+								{
+									"id": "01f99e50-f92e-453c-9462-053112652fe4",
+									"key": "itemId",
+									"value": "abc-123"
+								}
+							]
+						},
+						"description": "Retrieve individual file or folder metadata.\n\nFiles have a `size` property representing the size of the uploaded content.\n\nFolders have a `contents` property listing the immediate children of this folder. Directory traversal can be performed by recursively navigating through `contents` items."
+					},
+					"response": [
+						{
+							"id": "006f478e-3e35-47c0-a81d-930d268038d0",
+							"name": "Get file info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"file\",\n    \"name\": \"Meeting Agenda.docx\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    },\n    \"data\": \"<binary>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/info/:itemId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"info",
+										":itemId"
+									],
+									"variable": [
+										{
+											"key": "itemId",
+											"value": "abc-123"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": \"abc-123\",\n    \"containerId\": \"def-456\",\n    \"type\": \"file\",\n    \"name\": \"Meeting Agenda.docx\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    },\n    \"size\": 103698\n}"
+						},
+						{
+							"id": "9c635b92-10d3-4fbf-a133-644857451fc5",
+							"name": "Get folder info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/info/:itemId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"info",
+										":itemId"
+									],
+									"variable": [
+										{
+											"key": "itemId",
+											"value": "xyz-987"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": \"xyz-987\",\n    \"containerId\": \"hij-789\",\n    \"type\": \"folder\",\n    \"name\": \"Agenda documents\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    },\n    \"contents\": [\n        {\n            \"id\": \"abc-123\",\n            \"type\": \"file\",\n            \"name\": \"Meeting Agenda.docx\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update item info",
+					"id": "fe2dcef0-9b7e-4060-962a-39d6f16998f1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"containerId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"permissions\": {\n        \"public\": \"none|read|write\",\n        \"members\": \"none|read|write\",\n        \"custom\": [{\n            \"<id>\": \"read|write\"\n        }]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/info/:itemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"info",
+								":itemId"
+							],
+							"variable": [
+								{
+									"id": "d5550ef4-769c-4652-b956-551a07a63d4e",
+									"key": "itemId",
+									"value": "abc-123"
+								}
+							]
+						},
+						"description": "Update file or folder metadata.\n\nChanging the `containerId` allows moving the file or folder. The name and permissions can also be updated."
+					},
+					"response": [
+						{
+							"id": "f29ec7bd-1c05-421b-ab91-d9f1115937d1",
+							"name": "Update item info",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"containerId\": \"def-456\",\n    \"name\": \"Meeting Agenda.docx\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/info/:itemId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"info",
+										":itemId"
+									],
+									"variable": [
+										{
+											"key": "itemId",
+											"value": "abc-123"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": \"abc-123\",\n    \"containerId\": \"def-456\",\n    \"type\": \"file\",\n    \"name\": \"Meeting Agenda.docx\",\n    \"permissions\": {\n        \"public\": \"none\",\n        \"members\": \"read\"\n    },\n    \"size\": 103698\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete item",
+					"id": "133b695e-8ab7-40b8-b28c-329f425a018e",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/info/:itemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"info",
+								":itemId"
+							],
+							"variable": [
+								{
+									"id": "34aa5f2e-35c6-4fbc-a5ab-c7e2866b9c09",
+									"key": "itemId",
+									"value": "abc-123"
+								}
+							]
+						},
+						"description": "Delete a file or folder by its ID."
+					},
+					"response": [
+						{
+							"id": "608a597c-eb5b-4d3e-a939-505d7187edca",
+							"name": "Delete item",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/info/:itemId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"info",
+										":itemId"
+									],
+									"variable": [
+										{
+											"key": "itemId",
+											"value": "abc-123"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": \"abc-123\",\n    \"type\": \"file\",\n    \"name\": \"Meeting Agenda.docx\"\n}"
+						}
+					]
+				}
+			],
+			"id": "112a4d1e-9bc9-40fb-907d-9c17107e2068",
+			"description": "File and folder metadata is managed separately from actual file content.\n\nThese requests are for handling the metadata of files and folders; name, permissions, etc.\n\nContent can be uploaded and downloaded only once a file is created through the \"Create item\" request."
+		},
+		{
+			"name": "Upload and download",
+			"item": [
+				{
+					"name": "Upload file data",
+					"id": "4bcd37ef-58c3-46c6-bc07-37bb958d851f",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fileData",
+									"value": "fileData",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/upload/:fileId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"upload",
+								":fileId"
+							],
+							"variable": [
+								{
+									"id": "a3d576d6-cbf6-4273-b076-dbbb20ad76a5",
+									"key": "fileId",
+									"value": "abc-123"
+								}
+							]
+						},
+						"description": "A `multipart/form-data` upload of a file, to be associated with an existing `fileId`. This can be used either to upload a large file's content for the first time after obtaining an ID from the \"Create item\" operation, or to replace the content of a previously-uploaded file.\n\nA subset of file metadata is returned, including the updated `size`."
+					},
+					"response": [
+						{
+							"id": "bab9cb98-d464-45e7-aad6-b1079a2b4e82",
+							"name": "Upload file data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fileData",
+											"value": "fileData",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/upload/:fileId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"upload",
+										":fileId"
+									],
+									"variable": [
+										{
+											"key": "fileId",
+											"value": "abc-123"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": \"abc-123\",\n    \"name\": \"Meeting Agenda.docx\",\n    \"size\": 244800\n}"
+						}
+					]
+				},
+				{
+					"name": "Download file data",
+					"id": "717e37af-7a97-4b94-a3e2-ab36f9e65b20",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/download/:itemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"download",
+								":itemId"
+							],
+							"variable": [
+								{
+									"id": "1cf7ebe7-474c-45c7-87cb-ffe5f447e7dd",
+									"key": "itemId",
+									"value": "abc-123"
+								}
+							]
+						},
+						"description": "Directly download a file by ID. You could also support downloading folders, for example by returning a `.zip` archive when the `:itemId` points to a folder."
+					},
+					"response": [
+						{
+							"id": "afd28956-3dc7-4ec1-a570-e61332d8d2a9",
+							"name": "Download file data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/download/:itemId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"download",
+										":itemId"
+									],
+									"variable": [
+										{
+											"key": "itemId",
+											"value": "abc-123"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "<binary file data>"
+						}
+					]
+				}
+			],
+			"id": "eb966769-9bf1-44a5-9007-94da9dc82744",
+			"description": "Once a file is created through the file and folder management requests, the file content can be uploaded using the \"Upload file data\" request and then download with the \"Download file data\" request."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://c89d7d89-b387-48fa-9848-ea50622b9cfa.mock.pstmn.io"
+		}
+	]
+}
