@@ -1,0 +1,730 @@
+{
+	"info": {
+		"_postman_id": "3c18c562-1041-4c3e-915d-8cafe42e8105",
+		"name": "test-5-Performance testing",
+		"description": "# 🧪 Get started here\n\nThis template is designed to help you test the performance of your API endpoints with varying sizes of query parameters. The template contains sample requests that simulate large and small query parameters to assess how well your API handles different loads.\n\nBy using this template, you can identify potential bottlenecks or performance issues in your API, enabling you to optimize and enhance the overall performance.\n\n## 🔖 **How to use this template**\n\n**Step 1:** Replace the sample URLs with your own API base URLs and add relevant query parameters.\n\n**Step 2 (optional):** Modify the sizes of the query parameters to reflect your specific use case better. You can create multiple requests with varying parameter sizes to test your API's performance thoroughly.\n\n**Step 3:** Run the collection using Postman's Collection Runner or Postman's Newman CLI tool.\n\n**Step 4:** Analyze the results to identify performance bottlenecks, slow response times, or potential issues with handling large or small query parameters.\n\n## ℹ️ Resources\n\n[Performance Testing](https://learning.postman.com/docs/designing-and-developing-your-api/testing-your-api/introduction-to-performance-testing/)  \n[Postman Collection Runner](https://learning.postman.com/docs/running-collections/intro-to-collection-runs/)  \n[Postman Newman CLI](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Large query params",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});"
+						]
+					}
+				}
+			],
+			"id": "9e5c5978-8dff-4644-b545-95aefd7aaf30",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/get?foo1=bar1&foo2=bar2&foo2=bar2&foo3=bar3&foo4=bar4&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10&foo5=bar5&foo6=bar6&foo7=bar7&foo8=bar8&foo9=bar9&foo10=bar10",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "foo1",
+							"value": "bar1"
+						},
+						{
+							"key": "foo2",
+							"value": "bar2"
+						},
+						{
+							"key": "foo2",
+							"value": "bar2"
+						},
+						{
+							"key": "foo3",
+							"value": "bar3"
+						},
+						{
+							"key": "foo4",
+							"value": "bar4"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						},
+						{
+							"key": "foo5",
+							"value": "bar5"
+						},
+						{
+							"key": "foo6",
+							"value": "bar6"
+						},
+						{
+							"key": "foo7",
+							"value": "bar7"
+						},
+						{
+							"key": "foo8",
+							"value": "bar8"
+						},
+						{
+							"key": "foo9",
+							"value": "bar9"
+						},
+						{
+							"key": "foo10",
+							"value": "bar10"
+						}
+					]
+				},
+				"description": "**Description**  \nThis request is designed to test an API endpoint with a large set of query parameters. By sending this request, you can assess how well your API handles complex requests and analyze its response times and performance under a significant load.\n\n**Request details**  \nURL: [https://postman-echo.com/get](https://postman-echo.com/get)  \nHTTP Method: GET  \nQuery Parameters: Multiple instances of foo1 through foo10 with varying values of \"bar\"\n\n**Usage**  \nTo use this request, simply replace the URL with your own API endpoint and modify the query parameters according to your requirements."
+			},
+			"response": []
+		},
+		{
+			"name": "Small query params",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						]
+					}
+				}
+			],
+			"id": "222f80fb-a0a2-4bf0-96ed-3c9f119f2c6c",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "foo1",
+							"value": "bar1"
+						},
+						{
+							"key": "foo2",
+							"value": "bar2"
+						}
+					]
+				},
+				"description": "**Description**  \nThis request is designed to test an API endpoint with a small set of query parameters. By sending this request, you can assess how well your API handles simple requests and analyze its response times and performance under a minimal load.\n\n**Request details**  \nURL: [https://postman-echo.com/get](https://postman-echo.com/get)  \nHTTP Method: GET  \nQuery Parameters:\n\n- foo1: bar1\n- foo2: bar2\n    \n\n**Usage**  \nTo use this request, simply replace the URL with your own API endpoint and modify the query parameters according to your requirements."
+			},
+			"response": []
+		}
+	]
+}
